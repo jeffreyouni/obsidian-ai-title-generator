@@ -1,0 +1,29 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "env": { "node": false, "browser": true },
+  "plugins": ["@typescript-eslint"],
+  "extends": ["airbnb-base", "airbnb-typescript/base", "prettier"],
+  "parserOptions": {
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "max-classes-per-file": "off",
+    "no-param-reassign": "off",
+    "no-new": "off",
+    "import/prefer-default-export": "off",
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc"
+        },
+        "groups": ["builtin", "external", "internal"],
+        "pathGroups": [],
+        "pathGroupsExcludedImportTypes": ["builtin", "object"]
+      }
+    ]
+  }
+}
