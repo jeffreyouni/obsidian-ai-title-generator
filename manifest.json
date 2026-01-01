@@ -1,0 +1,13 @@
+{
+  "id": "title-generator",
+  "name": "Title Generator",
+  "version": "2.0.0",
+  "minAppVersion": "0.15.0",
+  "description": "Quickly and easily title your notes using AI (OpenAI, DeepSeek, Claude, etc.)",
+  "author": "Jeffrey Gu",
+  "authorUrl": "https://gujeff.com",
+  "fundingUrl": {
+    "PayPal": "https://paypal.me/jeffreygu0109"
+  },
+  "isDesktopOnly": false
+}
