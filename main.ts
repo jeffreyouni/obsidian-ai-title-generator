@@ -38,9 +38,9 @@ class TitleGeneratorSettingTab extends PluginSettingTab {
     const { containerEl } = this;
     containerEl.empty();
 
-    new Setting(containerEl).setName('OpenAI API key').addText((text) => {
+    new Setting(containerEl).setName('API key').addText((text) => {
       text.inputEl.type = 'password';
-      text.inputEl.style.width = '100%';
+      text.inputEl.addClass('ai-title-generator-input');
 
       text
         .setPlaceholder('API Key')
@@ -52,12 +52,12 @@ class TitleGeneratorSettingTab extends PluginSettingTab {
     });
 
     new Setting(containerEl)
-      .setName('API Base URL')
+      .setName('API base URL')
       .setDesc(
         'Custom OpenAI API base URL (e.g., https://api.chatanywhere.tech/v1)'
       )
       .addText((text) => {
-        text.inputEl.style.width = '100%';
+        text.inputEl.addClass('ai-title-generator-input');
         text
           .setPlaceholder('https://api.openai.com/v1')
           .setValue(this.plugin.settings.baseURL)
@@ -73,7 +73,7 @@ class TitleGeneratorSettingTab extends PluginSettingTab {
         'Enter the AI model name (e.g., gpt-3.5-turbo, gpt-4o, deepseek-v3, claude-3-5-sonnet-20241022, etc.)'
       )
       .addText((text) => {
-        text.inputEl.style.width = '100%';
+        text.inputEl.addClass('ai-title-generator-input');
         text
           .setPlaceholder('gpt-3.5-turbo')
           .setValue(this.plugin.settings.model)
@@ -167,7 +167,7 @@ export default class TitleGeneratorPlugin extends Plugin {
     }
 
     const content = editor.getValue();
-    this.generateTitle(activeFile, content);
+    await this.generateTitle(activeFile, content);
   }
 
   async onload() {
@@ -196,7 +196,7 @@ export default class TitleGeneratorPlugin extends Plugin {
 
     this.registerEvent(
       this.app.workspace.on('files-menu', (menu, files) => {
-        const tFiles = files.filter((f) => f instanceof TFile) as TFile[];
+        const tFiles = files.filter((f) => f instanceof TFile);
         if (tFiles.length < 1) {
           return;
         }
